@@ -14,17 +14,17 @@ def get_data_path(filename):
 
 def load_quran_data():
     try:
-        arabic_path = get_data_path('ar.quran.xml')
+        arabic_path = get_data_path('arabicquran.xml')
         arabic_tree = ET.parse(arabic_path)
     except FileNotFoundError:
-        print("Error: Quran data file 'data/ar.quran.xml' not found.")
+        print("Error: Quran data file 'data/arabicquran.xml' not found.")
         sys.exit(1)
 
     try:
-        english_path = get_data_path('en.quran.xml')
+        english_path = get_data_path('englishquran.xml')
         english_tree = ET.parse(english_path)
     except FileNotFoundError:
-        print("Error: Quran data file 'data/en.quran.xml' not found.")
+        print("Error: Quran data file 'data/englishquran.xml' not found.")
         sys.exit(1)
 
     arabic_root = arabic_tree.getroot()
