@@ -11,7 +11,7 @@ import re
 def get_data_path(filename):
     script_dir = os.path.dirname(os.path.realpath(__file__))
     path = os.path.join(script_dir, 'data', filename)
-    print(f"DEBUG: Looking for file at {path}")  # Debug print
+    #print(f"DEBUG: Looking for file at {path}")  # Debug print
     return path
 
 def load_quran_data():
