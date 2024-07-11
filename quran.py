@@ -10,21 +10,21 @@ import re
 
 def get_data_path(filename):
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(script_dir, 'data', filename)
+    return os.path.join(script_dir, filename)
 
 def load_quran_data():
     try:
         arabic_path = get_data_path('arabicquran.xml')
         arabic_tree = ET.parse(arabic_path)
     except FileNotFoundError:
-        print("Error: Quran data file 'data/arabicquran.xml' not found.")
+        print("Error: Quran data file 'arabicquran.xml' not found.")
         sys.exit(1)
 
     try:
-        english_path = get_data_path('englishquran.xml')
+        english_path = get_data_path('sahihinternational.xml')
         english_tree = ET.parse(english_path)
     except FileNotFoundError:
-        print("Error: Quran data file 'data/englishquran.xml' not found.")
+        print("Error: Quran data file 'sahihinternational.xml' not found.")
         sys.exit(1)
 
     arabic_root = arabic_tree.getroot()
