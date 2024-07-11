@@ -31,6 +31,15 @@ def load_quran_data():
 
     return arabic_root, english_root
 
+def alias_command(args):
+    # Define your command aliases here
+    if args[0] == "-s":
+        return ["search"] + args[1:]
+    if args[0] == "-c":
+        return ["count"] + args[1:]
+    # Add more aliases as needed
+    return args
+
 # Highlight function
 def highlight(text, word, no_highlight):
     if no_highlight:
@@ -466,4 +475,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
