@@ -52,18 +52,6 @@ def get_chapter_info(chapter):
         print(colored('Invalid chapter number.', 'red'))
         return
 
-    table_data = [
-        [colored('Chapter', 'green'),
-         colored('Name', 'green'),
-         colored('Arabic', 'green'),
-         colored('English', 'green'),
-         colored('Verses', 'green'),
-         colored('Rukus', 'green'),
-         colored('Start', 'green'),
-         colored('Type', 'green'),
-         colored('Order', 'green')]
-    ]
-
     chapter_info = chapterList[chapter_index]
     table_data.append([
         chapter_info['index'],
