@@ -2,7 +2,7 @@ In the Name of Allah, the Most Gracious, the Most Merciful
 # The Terminal Quran
 Programmed by: Aryan Chandavarkar
 
-A command-line application to read and parse the Quran.
+A command-line application to read and search the Quran.
 
 ## Requirements
 
@@ -20,6 +20,11 @@ A command-line application to read and parse the Quran.
     sudo apt install python3 python3-pip
     ```
 
+2. Install required Python libraries:
+    ```sh
+    pip3 install termcolor tabulate
+    ```
+
 #### Arch-based Distros
 
 1. Install Python 3 and pip:
@@ -27,11 +32,26 @@ A command-line application to read and parse the Quran.
     sudo pacman -S python python-pip
     ```
 
+2. Install required Python libraries:
+    ```sh
+    pip3 install termcolor tabulate
+    ```
+
 #### macOS
 
 1. Install Homebrew if not already installed:
     ```sh
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+
+2. Install Python 3:
+    ```sh
+    brew install python
+    ```
+
+3. Install required Python libraries:
+    ```sh
+    pip3 install termcolor tabulate
     ```
 
 ## Installation
