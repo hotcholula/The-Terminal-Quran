@@ -2,7 +2,20 @@ In the Name of Allah, the Most Gracious, the Most Merciful
 # The Terminal Quran
 Programmed by: Aryan Chandavarkar
 
-A command-line application to read and search the Quran.
+A command-line application to read and search the Quran. Free Open Source Software. Best on Unix. 
+
+##FOR MOST PEOPLE IT'S AS SIMPLE AS THIS
+
+Copy and paste this into your terminal and let it do all the work for you. If for some reason that doesn't work then read further 
+
+
+    ```sh
+    git clone https://github.com/hotcholula/The-Terminal-Quran.git
+
+    cd The-Terminal-Quran
+
+    make install
+    ```
 
 ## Requirements
 
