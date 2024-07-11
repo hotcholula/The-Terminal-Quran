@@ -63,13 +63,10 @@ A command-line application to read and search the Quran.
 1. Open a terminal and run the following commands:
 
     ```sh
-    # Clone the GitHub repository
     git clone https://github.com/hotcholula/The-Terminal-Quran.git
 
-    # Navigate to the project directory
     cd The-Terminal-Quran
 
-    # Run the Makefile to install
     make install
     ```
 
