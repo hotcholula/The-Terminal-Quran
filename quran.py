@@ -13,20 +13,20 @@ def get_data_path(filename):
     path = os.path.join(script_dir, 'data', filename)
     print(f"DEBUG: Looking for file at {path}")  # Debug print
     return path
-    
+
 def load_quran_data():
     try:
         arabic_path = get_data_path('ar.quran.xml')
         arabic_tree = ET.parse(arabic_path)
     except FileNotFoundError:
-        print("Error: Quran data file 'data/ar.quran.xml' not found.")
+        print(f"Error: Quran data file '{arabic_path}' not found.")
         sys.exit(1)
 
     try:
         english_path = get_data_path('en.quran.xml')
         english_tree = ET.parse(english_path)
     except FileNotFoundError:
-        print("Error: Quran data file 'data/en.quran.xml' not found.")
+        print(f"Error: Quran data file '{english_path}' not found.")
         sys.exit(1)
 
     arabic_root = arabic_tree.getroot()
@@ -35,23 +35,20 @@ def load_quran_data():
     return arabic_root, english_root
 
 def alias_command(args):
-    # Define your command aliases here
     if args[0] == "-s":
         return ["search"] + args[1:]
     if args[0] == "-c":
         return ["count"] + args[1:]
-    # Add more aliases as needed
+    if args[0].startswith('/'):
+        return ["search", args[0][1:]] + args[1:]
     return args
 
-# Highlight function
 def highlight(text, word, no_highlight):
     if no_highlight:
         return text
-    # Use a case-insensitive regex pattern to match the whole word
     regex = re.compile(r'\b' + re.escape(word) + r'\b', re.IGNORECASE)
     return regex.sub(lambda match: colored(match.group(), 'cyan'), text)
 
-# Print wrapped verse text with consistent indentation
 def print_wrapped_verse(chapter_num, verse_num, text):
     width, _ = shutil.get_terminal_size()
     indent = ' ' * (len(f"{chapter_num}:{verse_num}") + 4)
@@ -59,7 +56,6 @@ def print_wrapped_verse(chapter_num, verse_num, text):
     wrapped_text = wrapper.fill(f"{chapter_num}:{verse_num}    {text}")
     print(wrapped_text)
 
-# Convert chapter names to numbers
 def chapter_name_to_number(name):
     _, english_root = load_quran_data()
     chapters = {sura.get('ename').lower(): int(sura.get('index')) for sura in english_root.findall('./sura')}
@@ -75,7 +71,6 @@ def chapter_name_to_number(name):
             print(f"Error: Invalid chapter name '{name}'.")
             sys.exit(1)
 
-# Parse chapter range allowing for names and numbers
 def parse_chapter_range(range_str):
     verse_pattern = re.compile(r"(\d+):(\d+)-(\d+):(\d+)")
     single_chapter_verse_pattern = re.compile(r"(\d+):(\d+)-(\d+)")
@@ -99,7 +94,6 @@ def parse_chapter_range(range_str):
         chap = chapter_name_to_number(range_str) if not range_str.isdigit() else int(range_str)
         return (chap, None, chap, None)
 
-# Read details about provided chapter and verse
 def read(chapter_num, verse_spec=None, lang="both", highlight_word=None, show_heading=True):
     arabic_root, english_root = load_quran_data()
 
@@ -131,12 +125,12 @@ def read(chapter_num, verse_spec=None, lang="both", highlight_word=None, show_he
                     if lang in ("both", "arabic"):
                         text = arabic_verse.get('text')
                         if highlight_word:
-                            text = highlight(text, highlight_word, no_highlight=False)
+                            text = highlight(text, highlight_word, False)
                         print_wrapped_verse(chapter_num, verse_num, text)
                     if lang in ("both", "english"):
                         text = english_verse.get('text')
                         if highlight_word:
-                            text = highlight(text, highlight_word, no_highlight=False)
+                            text = highlight(text, highlight_word, False)
                         print_wrapped_verse(chapter_num, verse_num, text)
         else:
             verse_num = int(verse_spec)
@@ -148,28 +142,27 @@ def read(chapter_num, verse_spec=None, lang="both", highlight_word=None, show_he
                 if lang in ("both", "arabic"):
                     text = arabic_verse.get('text')
                     if highlight_word:
-                        text = highlight(text, highlight_word, no_highlight=False)
+                        text = highlight(text, highlight_word, False)
                     print_wrapped_verse(chapter_num, verse_num, text)
                 if lang in ("both", "english"):
                     text = english_verse.get('text')
                     if highlight_word:
-                        text = highlight(text, highlight_word, no_highlight=False)
+                        text = highlight(text, highlight_word, False)
                     print_wrapped_verse(chapter_num, verse_num, text)
     else:
         for aya in arabic_root.findall(f"./sura[@index='{chapter_num}']/aya"):
             if lang in ("both", "arabic"):
                 text = aya.get('text')
                 if highlight_word:
-                    text = highlight(text, highlight_word, no_highlight=False)
+                    text = highlight(text, highlight_word, False)
                 print_wrapped_verse(chapter_num, aya.get('index'), text)
             english_verse = english_root.find(f"./sura[@index='{chapter_num}']/aya[@index='{aya.get('index')}']")
             if english_verse is not None and lang in ("both", "english"):
                 text = english_verse.get('text')
                 if highlight_word:
-                    text = highlight(text, highlight_word, no_highlight=False)
+                    text = highlight(text, highlight_word, False)
                 print_wrapped_verse(chapter_num, aya.get('index'), text)
 
-# Read range of chapters and verses
 def read_range(range_spec, lang="both", highlight_word=None, no_chapter_headings=False):
     start_chap, start_verse, end_chap, end_verse = parse_chapter_range(range_spec)
 
@@ -193,14 +186,12 @@ def read_range(range_spec, lang="both", highlight_word=None, no_chapter_headings
         first_pass = False
         current_chap += 1
 
-# Search function
 def search(keyword, range_spec=None, output_file=None, no_chapter_headings=False, no_highlight=False):
     arabic_root, english_root = load_quran_data()
     found = False
     results = []
     count = 0
 
-    # Use a case-insensitive regex pattern to match the whole word
     keyword_regex = re.compile(r'\b' + re.escape(keyword) + r'\b', re.IGNORECASE)
 
     if range_spec:
@@ -231,7 +222,7 @@ def search(keyword, range_spec=None, output_file=None, no_chapter_headings=False
 
                 verse_text = aya.get('text')
                 if keyword_regex.search(verse_text):
-                    verse_text = highlight(verse_text, keyword, no_highlight)  # Highlight the keyword
+                    verse_text = highlight(verse_text, keyword, no_highlight)
                     count += 1
                     if not found:
                         results.append(f"Chapter {chapter_num} - {chapter_name}:")
@@ -258,7 +249,6 @@ def search(keyword, range_spec=None, output_file=None, no_chapter_headings=False
         for result in results:
             print(result)
 
-# Search info function
 def search_info(info_type, range_spec, lang="both"):
     arabic_root, english_root = load_quran_data()
     start_chap, start_verse, end_chap, end_verse = parse_chapter_range(range_spec)
@@ -295,13 +285,11 @@ def search_info(info_type, range_spec, lang="both"):
     for result in results:
         print(result)
 
-# Count occurrences function
 def count(keyword, range_spec=None, output_file=None):
     _, english_root = load_quran_data()
     total_count = 0
     results = []
 
-    # Use a case-insensitive regex pattern to match the whole word
     keyword_regex = re.compile(r'\b' + re.escape(keyword) + r'\b', re.IGNORECASE)
 
     if range_spec:
@@ -341,7 +329,6 @@ def count(keyword, range_spec=None, output_file=None):
     else:
         print(output)
 
-# Info function to show chapter info
 def info(chapter_range):
     arabic_root, english_root = load_quran_data()
     start_chap, start_verse, end_chap, end_verse = parse_chapter_range(chapter_range)
