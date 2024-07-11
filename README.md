@@ -18,7 +18,7 @@ A command-line application to read and search the Quran.
     sudo apt install git
 
     # Clone the GitHub repository
-    git clone https://github.com/yourusername/The-Terminal-Quran.git
+    git clone https://github.com/hotcholula/The-Terminal-Quran.git
 
     # Navigate to the project directory
     cd The-Terminal-Quran
@@ -36,7 +36,7 @@ A command-line application to read and search the Quran.
     sudo pacman -S git
 
     # Clone the GitHub repository
-    git clone https://github.com/yourusername/The-Terminal-Quran.git
+    git clone https://github.com/hotcholula/The-Terminal-Quran.git
 
     # Navigate to the project directory
     cd The-Terminal-Quran
@@ -57,7 +57,7 @@ A command-line application to read and search the Quran.
     brew install git
 
     # Clone the GitHub repository
-    git clone https://github.com/yourusername/The-Terminal-Quran.git
+    git clone https://github.com/hotcholula/The-Terminal-Quran.git
 
     # Navigate to the project directory
     cd The-Terminal-Quran
