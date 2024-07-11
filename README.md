@@ -1,69 +1,56 @@
 In the Name of Allah, the Most Gracious, the Most Merciful
-
 # The Terminal Quran
+Programmed by: Aryan Chandavarkar
 
-A command-line application to read and search the Quran.
+A command-line application to read and parse the Quran.
 
-## Installation
+## Requirements
 
-### Using the Installer Script
+- Python 3
+- `termcolor` library
+- `tabulate` library
+
+### Install Requirements
 
 #### Ubuntu and Debian-based Distros
 
-1. Open a terminal and run the following commands:
-
+1. Install Python 3 and pip:
     ```sh
-    # Update package list and install Git if not already installed
     sudo apt update
-    sudo apt install git
-
-    # Clone the GitHub repository
-    git clone https://github.com/hotcholula/The-Terminal-Quran.git
-
-    # Navigate to the project directory
-    cd The-Terminal-Quran
-
-    # Run the installer script
-    sudo ./install.sh
+    sudo apt install python3 python3-pip
     ```
 
 #### Arch-based Distros
 
-1. Open a terminal and run the following commands:
-
+1. Install Python 3 and pip:
     ```sh
-    # Install Git if not already installed
-    sudo pacman -S git
-
-    # Clone the GitHub repository
-    git clone https://github.com/hotcholula/The-Terminal-Quran.git
-
-    # Navigate to the project directory
-    cd The-Terminal-Quran
-
-    # Run the installer script
-    sudo ./install.sh
+    sudo pacman -S python python-pip
     ```
 
 #### macOS
 
+1. Install Homebrew if not already installed:
+    ```sh
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+
+## Installation
+
+### Using the Makefile
+
+#### All Platforms
+
 1. Open a terminal and run the following commands:
 
     ```sh
-    # Install Homebrew if not already installed
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-    # Install Git if not already installed
-    brew install git
-
     # Clone the GitHub repository
     git clone https://github.com/hotcholula/The-Terminal-Quran.git
 
     # Navigate to the project directory
     cd The-Terminal-Quran
 
-    # Run the installer script
-    sudo ./install.sh
+    # Run the Makefile to install
+    make install
     ```
 
 ### Manual Installation
@@ -74,11 +61,19 @@ A command-line application to read and search the Quran.
 
 2. Open a terminal and navigate to the directory where you extracted the files.
 
-3. Copy the files to `/usr/local/The-Terminal-Quran` and create a symbolic link:
-   ```sh
-   sudo mkdir -p /usr/local/The-Terminal-Quran
-   sudo cp -r * /usr/local/The-Terminal-Quran
-   sudo ln -sf /usr/local/The-Terminal-Quran/quran.py /usr/local/bin/quran
-   sudo chmod +x /usr/local/The-Terminal-Quran/quran.py
-   sudo chmod +x /usr/local/bin/quran
+3. Install dependencies and set up the project:
+    ```sh
+    pip3 install termcolor tabulate
+    sudo mkdir -p /usr/local/The-Terminal-Quran
+    sudo cp -r * /usr/local/The-Terminal-Quran
+    sudo ln -sf /usr/local/The-Terminal-Quran/quran.py /usr/local/bin/quran
+    sudo chmod +x /usr/local/The-Terminal-Quran/quran.py
+    sudo chmod +x /usr/local/bin/quran
+    ```
 
+## Usage
+
+After installing, you can use the `quran` command followed by the desired options:
+
+```sh
+quran <command> [<args>] [-a | -e] [-nc] [-nh]
