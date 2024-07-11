@@ -9,29 +9,22 @@ import difflib
 import re
 
 def get_data_path(filename):
-    script_dir = os.path.dirname(os.path.realpath(__file__))
-    data_dir = os.path.join(script_dir, 'data')
-    if not os.path.exists(data_dir):
-        print(f"Error: Data directory '{data_dir}' does not exist.")
-    return os.path.join(data_dir, filename)
+    return os.path.join(os.path.dirname(__file__), 'data', filename)
 
 def load_quran_data():
-    arabic_path = get_data_path('arabicquran.xml')
-    english_path = get_data_path('sahihinternational.xml')
-    
-    print(f"Arabic Quran file path: {arabic_path}")
-    print(f"Sahih International file path: {english_path}")
-
-    if not os.path.exists(arabic_path):
-        print(f"Error: Quran data file '{arabic_path}' not found.")
+    try:
+        arabic_path = get_data_path('ar.quran.xml')
+        arabic_tree = ET.parse(arabic_path)
+    except FileNotFoundError:
+        print("Error: Quran data file 'data/ar.quran.xml' not found.")
         sys.exit(1)
 
-    if not os.path.exists(english_path):
-        print(f"Error: Quran data file '{english_path}' not found.")
+    try:
+        english_path = get_data_path('en.quran.xml')
+        english_tree = ET.parse(english_path)
+    except FileNotFoundError:
+        print("Error: Quran data file 'data/en.quran.xml' not found.")
         sys.exit(1)
-
-    arabic_tree = ET.parse(arabic_path)
-    english_tree = ET.parse(english_path)
 
     arabic_root = arabic_tree.getroot()
     english_root = english_tree.getroot()
@@ -390,10 +383,6 @@ def main():
 
     command_args = alias_command(command_args)
     command = command_args[0]
-
-    if command.startswith('/'):
-        search(command[1:], None, no_chapter_headings=no_chapter_headings, no_highlight=no_highlight)
-        return
 
     lang = "both"
     highlight_word = None
