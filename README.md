@@ -4,7 +4,7 @@ Programmed by: Aryan Chandavarkar
 
 A command-line application to read and search the Quran. Free Open Source Software. Best on Unix. 
 
-##FOR MOST PEOPLE IT'S AS SIMPLE AS THIS
+## FOR MOST PEOPLE INSTALLATION IS AS SIMPLE AS THIS
 
 Copy and paste this into your terminal and let it do all the work for you. If for some reason that doesn't work then read further 
 
