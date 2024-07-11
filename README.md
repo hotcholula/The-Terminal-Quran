@@ -13,7 +13,7 @@ Copy and paste this into your terminal and let it do all the work for you. If fo
     cd The-Terminal-Quran
 
     make install
-    ```
+ ```
 ## Requirements
 
 - Python 3
