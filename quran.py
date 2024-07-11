@@ -19,8 +19,8 @@ def load_quran_data():
     arabic_path = get_data_path('arabicquran.xml')
     english_path = get_data_path('sahihinternational.xml')
     
-    print(f"Arabic Quran file path: {arabic_path}")
-    print(f"Sahih International file path: {english_path}")
+    #print(f"Arabic Quran file path: {arabic_path}")
+    #print(f"Sahih International file path: {english_path}")
 
     if not os.path.exists(arabic_path):
         print(f"Error: Quran data file '{arabic_path}' not found.")
