@@ -9,8 +9,10 @@ import difflib
 import re
 
 def get_data_path(filename):
-    return os.path.join(os.path.dirname(__file__), 'data', filename)
-
+    path = os.path.join(os.path.dirname(__file__), 'data', filename)
+    print(f"DEBUG: Looking for file at {path}")  # Debug print
+    return path
+    
 def load_quran_data():
     try:
         arabic_path = get_data_path('ar.quran.xml')
