@@ -7,16 +7,13 @@ A command-line application to read and search the Quran. Free Open Source Softwa
 ## FOR MOST PEOPLE INSTALLATION IS AS SIMPLE AS THIS
 
 Copy and paste this into your terminal and let it do all the work for you. If for some reason that doesn't work then read further 
-
-
-    ```sh
+```sh
     git clone https://github.com/hotcholula/The-Terminal-Quran.git
 
     cd The-Terminal-Quran
 
     make install
     ```
-
 ## Requirements
 
 - Python 3
