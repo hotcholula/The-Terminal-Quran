@@ -1,5 +1,4 @@
 # Programmed by Aryan Chandavarkar
-
 VENV_DIR := venv
 
 .PHONY: all install install-venv
@@ -13,6 +12,7 @@ install: install-venv
 	@sudo ln -sf /usr/local/The-Terminal-Quran/quran.py /usr/local/bin/quran
 	@sudo chmod +x /usr/local/The-Terminal-Quran/quran.py
 	@sudo chmod +x /usr/local/bin/quran
+	@echo "In the Name of Allah The Most Gracious the Most Merciful, Salutations be upon Muhammad the Final Prophet. I pray this brings you and me goodness and guidance. Ameen."
 
 install-venv:
 	@echo "Creating virtual environment..."
@@ -25,4 +25,3 @@ clean:
 	@echo "Cleaning up..."
 	@rm -rf $(VENV_DIR)
 	@echo "Cleaned."
-
