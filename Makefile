@@ -12,7 +12,7 @@ install: install-venv
 	@sudo ln -sf /usr/local/The-Terminal-Quran/quran.py /usr/local/bin/quran
 	@sudo chmod +x /usr/local/The-Terminal-Quran/quran.py
 	@sudo chmod +x /usr/local/bin/quran
-	@echo "In the Name of Allah The Most Gracious the Most Merciful, Salutations be upon Muhammad the Final Prophet. As Salamu Alaykum [Peace be upon you]. I, Aryan Muhammad Chandavarkar pray this brings you and me goodness and guidance. Ameen."
+	@echo "In the Name of Allah The Most Gracious the Most Merciful, Salutations be upon Muhammad the Final Prophet. As Salamu Alaykum [Peace be upon you]. I, Aryan Muhammad Chandavarkar pray this Holy Qur'an brings you and me goodness, guidance, and forgiveness of sin. May He enter us into the Gardens of Paradise and protect us from the Fires of Hell. May He make this a source of good deeds for me and you until the Day of Judgement. Ameen."
 
 install-venv:
 	@echo "Creating virtual environment..."
