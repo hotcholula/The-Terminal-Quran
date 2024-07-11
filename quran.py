@@ -10,22 +10,28 @@ import re
 
 def get_data_path(filename):
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(script_dir, filename)
+    data_dir = os.path.join(script_dir, 'data')
+    if not os.path.exists(data_dir):
+        print(f"Error: Data directory '{data_dir}' does not exist.")
+    return os.path.join(data_dir, filename)
 
 def load_quran_data():
-    try:
-        arabic_path = get_data_path('arabicquran.xml')
-        arabic_tree = ET.parse(arabic_path)
-    except FileNotFoundError:
-        print("Error: Quran data file 'arabicquran.xml' not found.")
+    arabic_path = get_data_path('arabicquran.xml')
+    english_path = get_data_path('sahihinternational.xml')
+    
+    print(f"Arabic Quran file path: {arabic_path}")
+    print(f"Sahih International file path: {english_path}")
+
+    if not os.path.exists(arabic_path):
+        print(f"Error: Quran data file '{arabic_path}' not found.")
         sys.exit(1)
 
-    try:
-        english_path = get_data_path('sahihinternational.xml')
-        english_tree = ET.parse(english_path)
-    except FileNotFoundError:
-        print("Error: Quran data file 'sahihinternational.xml' not found.")
+    if not os.path.exists(english_path):
+        print(f"Error: Quran data file '{english_path}' not found.")
         sys.exit(1)
+
+    arabic_tree = ET.parse(arabic_path)
+    english_tree = ET.parse(english_path)
 
     arabic_root = arabic_tree.getroot()
     english_root = english_tree.getroot()
