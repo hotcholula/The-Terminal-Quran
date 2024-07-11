@@ -9,7 +9,7 @@ import difflib
 import re
 
 def get_data_path(filename):
-    script_dir = os.path.dirname(os.path.abspath(__file__))
+    script_dir = os.path.dirname(os.path.realpath(__file__))
     data_dir = os.path.join(script_dir, 'data')
     if not os.path.exists(data_dir):
         print(f"Error: Data directory '{data_dir}' does not exist.")
