@@ -1,20 +1,28 @@
 # Programmed by Aryan Chandavarkar
-.PHONY: install dependencies
 
-install: dependencies
-	@echo "Installing The-Terminal-Quran..."
-	sudo mkdir -p /usr/local/The-Terminal-Quran
-	sudo cp -r * /usr/local/The-Terminal-Quran
-	sudo ln -sf /usr/local/The-Terminal-Quran/quran.py /usr/local/bin/quran
-	sudo chmod +x /usr/local/The-Terminal-Quran/quran.py
-	sudo chmod +x /usr/local/bin/quran
-	@echo "The Terminal Quran installed successfully. You can now run 'quran' from anywhere in your terminal. May your life be filled with guidance and goodness."
+VENV_DIR := venv
 
-dependencies:
-	@echo "Installing dependencies..."
-	@if [ `uname` = "Darwin" ]; then \
-		brew install python; \
-	fi
-	pip3 install termcolor tabulate
-	@echo "Dependencies installed."
+.PHONY: all install install-venv
+
+all: install
+
+install: install-venv
+	@echo "Copying files..."
+	@sudo mkdir -p /usr/local/The-Terminal-Quran
+	@sudo cp -r * /usr/local/The-Terminal-Quran
+	@sudo ln -sf /usr/local/The-Terminal-Quran/quran.py /usr/local/bin/quran
+	@sudo chmod +x /usr/local/The-Terminal-Quran/quran.py
+	@sudo chmod +x /usr/local/bin/quran
+
+install-venv:
+	@echo "Creating virtual environment..."
+	@python3 -m venv $(VENV_DIR)
+	@echo "Installing dependencies in virtual environment..."
+	@$(VENV_DIR)/bin/pip install termcolor tabulate
+	@echo "Virtual environment and dependencies installed."
+
+clean:
+	@echo "Cleaning up..."
+	@rm -rf $(VENV_DIR)
+	@echo "Cleaned."
 
