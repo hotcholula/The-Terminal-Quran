@@ -9,7 +9,8 @@ import difflib
 import re
 
 def get_data_path(filename):
-    path = os.path.join(os.path.dirname(__file__), 'data', filename)
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    path = os.path.join(script_dir, 'data', filename)
     print(f"DEBUG: Looking for file at {path}")  # Debug print
     return path
     
